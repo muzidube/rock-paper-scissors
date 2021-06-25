@@ -1,0 +1,142 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: black;
+
+}
+
+body {
+    background-color: #fdf1f0;
+    
+}
+
+#currentResult {
+    margin-top: 10px;
+}
+
+.sides-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sides-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.playerSide {
+    text-align: center;
+}
+
+.allTitles {
+    text-align: center;
+    transition: 0.1s linear;
+    color: black;
+
+}
+
+.computerSide {
+    text-align:center;
+}
+
+
+.winner {
+    transform: scale(1.4);
+    text-shadow: 3px 3px 3px teal;
+    color: #ffc600;
+	-webkit-animation: flash linear 10s 3;
+	animation: flash linear 10s 3;
+}
+
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+
+
+button {
+    background-color: none;
+    border: none;
+    
+}
+
+
+button:hover {
+    transform: scale(1.1);
+    border-style: solid;
+    border: 3px solid black;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgb(170, 104, 104);
+    cursor: pointer;
+}
+
+button:active {
+    opacity: 0;
+}
+
+#computerBtn {
+    background-color: none;
+    border: none;
+}
+
+#computerBtn:hover {
+    background-color: none;
+    border: none;
+    border-style: none;
+    box-shadow: none;
+    cursor:inherit;
+    width: 1;
+}
+
+
+#rock {
+    background: url(/images/rock.png);
+    background-size: cover;
+    width: 200px;
+    height: 220px;
+}
+
+#paper {
+    background: url(/images/paper.png);
+    background-size: cover;
+    width: 200px;
+    height: 220px;
+}
+
+#scissors {
+    background: url(/images/scissors.png);
+    background-size: cover;
+    width: 200px;
+    height: 220px;
+}
+
+i {
+    width: 300px;
+    height: 300px;
+}
+
+.score {
+    text-align: center;
+}
+
+#result {
+    margin-top: 500px;
+}

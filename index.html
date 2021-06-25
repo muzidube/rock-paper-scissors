@@ -4,10 +4,173 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="rock-paper-scissors.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <header>
+        <div>
+
+        </div>
+    </header>
+    <main>
+        <div class ="score" id="currentResult">
+            <p></p>
+        </div>
+        <div class="sides-row">
+            <div class="sides-column">
+                <div class="playerSide">
+                    <p class="allTitles" class="title" id="playerTitle">Player</p>
+                    <button type="submit" class="btn" id="rock" onclick="playRound(this)" style="color: rgba(0, 0, 0, 0);">Rock</button>
+                    <button type="submit" class="btn" id="paper" onclick="playRound(this)" style="color: rgba(0, 0, 0, 0);">Paper</button>
+                    <button type="submit" class="btn" id="scissors" onclick="playRound(this)" style="color: rgba(0, 0, 0, 0);">Scissors</button>
+                </div>
+            </div>
+            <div class="sides-column">
+                <div class="computerSide">
+                    <p class="allTitles" class ="title" id="computerTitle">Computer</p>
+                    <button type="submit" class="computerBtn" id="computerBtn"></button>
+                </div>
+            </div>
+        </div>
+        <div class ="score" id="result">
+            <p></p>
+        </div>
+    </main>
 </body>
+
+<script>
+    /* 
+Array with rock, paper, scissors
+Randomly return one of them
+*/
+
+/* GAME IS BELOW */
+
+let playerScore=0;
+let computerScore=0;
+
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('winner');
+  }
+
+  function removeComputerSign() {
+    document.getElementById('computerBtn').removeAttribute('id');
+  }
+
+function playRound(elem) {
+    const computerTitle = document.querySelector('#computerTitle');
+    const playerTitle = document.querySelector('#playerTitle');
+    const result = document.querySelector('#result');
+    const currentResult = document.querySelector('#currentResult');
+    const allTitles = Array.from(document.querySelectorAll('.allTitles'));
+    allTitles.forEach(title => title.addEventListener('transitionend', removeTransition));
+
+    const buttons = Array.from(document.querySelectorAll('.btn'));
+    buttons.forEach(btn => btn.addEventListener('onclick', removeComputerSign));
+
+    const computerSign = document.querySelector('.computerBtn')
+
+    currentResult.textContent = playerScore + " - " + computerScore
+
+
+    let playerInput = elem.textContent.toUpperCase();
+
+    let myArray = ["Rock", "Paper", "Scissors"];
+    let computerInput = myArray[Math.floor(Math.random()*myArray.length)].toUpperCase();
+
+
+
+    if (playerInput == computerInput) {
+        result.textContent =  "Draw"
+        computerSign.id = computerInput.toLowerCase();
+    }   else if (
+            (computerInput == "ROCK" && playerInput == "SCISSORS") ||
+            (computerInput == "SCISSORS" && playerInput == "PAPER") ||
+            (computerInput == "PAPER" && playerInput == "ROCK")
+    ) {
+    computerScore = ++computerScore
+    if (computerScore === 1) {
+        result.textContent = "Computer Wins - 1 " + computerInput + " beats " + playerInput;
+        currentResult.textContent = playerScore + " - " + computerScore
+        computerSign.id = computerInput.toLowerCase();
+        computerTitle.classList.add('winner');
+        } else if (computerScore === 2) {
+            result.textContent = "Computer Wins - 2 " + computerInput + " beats " + playerInput;
+            currentResult.textContent = playerScore + " - " + computerScore
+            computerTitle.classList.add('winner');
+            computerSign.id = computerInput.toLowerCase();
+        } else if (computerScore === 3) {
+            result.textContent = "Computer Wins - 3 " + computerInput + " beats " + playerInput;
+            currentResult.textContent = playerScore + " - " + computerScore
+            computerTitle.classList.add('winner');
+            computerSign.id = computerInput.toLowerCase();
+        } else if (computerScore === 4) {
+            result.textContent = "Computer Wins - 4 " + computerInput + " beats " + playerInput;
+            currentResult.textContent = playerScore + " - " + computerScore
+            result.textContent = "Match Point";
+            computerTitle.classList.add('winner');
+            computerSign.id = computerInput.toLowerCase();
+        } else if (computerScore === 5) {
+            currentResult.textContent = playerScore + " - " + computerScore;
+            if(!alert('Computer Wins!')){window.location.reload();}
+            result.textContent = "Computer Wins!!";
+            computerTitle.classList.add('winner');
+            computerSign.id = computerInput.toLowerCase();
+    } 
+
+    } else { 
+        playerScore = ++playerScore
+        if (playerScore === 1) {
+            result.textContent = "Player Wins - 1 " + playerInput + " beats " + computerInput;
+            currentResult.textContent = playerScore + " - " + computerScore
+            playerTitle.classList.add('winner');
+            computerSign.id = computerInput.toLowerCase();
+            } else if (playerScore === 2) {
+                result.textContent = "Player Wins - 2 " + playerInput + " beats " + computerInput;
+                currentResult.textContent = playerScore + " - " + computerScore
+                playerTitle.classList.add('winner');
+                computerSign.id = computerInput.toLowerCase();
+            } else if (playerScore === 3) {
+                result.textContent = "Player Wins - 3 " + playerInput + " beats " + computerInput;
+                currentResult.textContent = playerScore + " - " + computerScore
+                playerTitle.classList.add('winner');
+                computerSign.id = computerInput.toLowerCase();
+            } else if (playerScore === 4) {
+                currentResult.textContent = playerScore + " - " + computerScore
+                result.textContent = "Match Point";
+                playerTitle.classList.add('winner');
+                computerSign.id = computerInput.toLowerCase();
+            } else if (playerScore === 5) {
+                if(!alert('Player Wins!')){window.location.reload();}
+                currentResult.textContent = playerScore + " - " + computerScore
+                result.textContent = "Player Wins!!";
+                playerTitle.classList.add('winner');
+                computerSign.id = computerInput.toLowerCase();
+            }
+ 
+
+    }
+
+
+
+}
+
+function game() {
+
+do {
+    playRound()
+}       while (playerScore < 5 || computerScore < 5);
+
+}
+
+/* GAME IS ABOVE */
+
+/* KEEPING SCORE BELOW*/
+
+
+
+</script>
+
 </html>
