@@ -19,10 +19,11 @@ body {
 }
 
 #currentResult {
-    margin-top: 10px;
+    margin: 0px;
 }
 
 .sides-row {
+    margin-top: 0px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -108,14 +109,14 @@ button:active {
 
 
 #rock {
-    background: url(/images/rock.png);
+    background: url(./images/rock.png);
     background-size: cover;
     width: 200px;
     height: 220px;
 }
 
 #paper {
-    background: url(/images/paper.png);
+    background: url(./images/paper.png);
     background-size: cover;
     width: 200px;
     height: 220px;
